@@ -1,0 +1,85 @@
+{
+  "variables": {
+    "disk_size": "61440",
+    "version": "26",
+    "iso_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso",
+    "iso_checksum": "e260921ef5c7bd5ee2a7b2f2f1156af6483014c73984e4cf37f2b6690e0155e5",
+    "iso_checksum_type": "sha256",
+    "ks": "ks.cfg"
+  },
+  "builders": [
+    {
+      "name": "fedora-{{user `version`}}-amd64-libvirt",
+      "type": "qemu",
+      "accelerator": "kvm",
+      "qemuargs": [
+        ["-m", "2048"],
+        ["-smp", "2"]
+      ],
+      "headless": true,
+      "http_directory": ".",
+      "format": "qcow2",
+      "disk_size": "{{user `disk_size`}}",
+      "disk_interface": "virtio",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "boot_wait": "5s",
+      "boot_command": [
+        "<up><tab> ip=dhcp inst.cmdline inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks`}}<enter>"
+      ],
+      "shutdown_command": "echo vagrant | sudo -S poweroff"
+    },
+    {
+      "name": "fedora-26-amd64-virtualbox",
+      "type": "virtualbox-iso",
+      "guest_os_type": "Fedora_64",
+      "guest_additions_mode": "attach",
+      "headless": true,
+      "http_directory": ".",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "2048"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
+        ["modifyvm", "{{.Name}}", "--vram", "32"],
+        ["modifyvm", "{{.Name}}", "--nictype1", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype2", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype3", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype4", "virtio"]
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "hard_drive_interface": "sata",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "boot_wait": "5s",
+      "boot_command": [
+        "<up><tab> ip=dhcp inst.cmdline inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks`}}<enter>"
+      ],
+      "shutdown_command": "echo vagrant | sudo -S poweroff"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "expect_disconnect": true,
+      "execute_command": "echo vagrant | sudo -S bash {{.Path}}",
+      "scripts": [
+        "upgrade.sh",
+        "provision.sh"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "{{.BuildName}}.box",
+      "vagrantfile_template": "Vagrantfile.template"
+    }
+  ]
+}
