@@ -2,10 +2,10 @@
 set -eux
 
 # remove old kernel packages.
-yum remove -y $(rpm -qa 'kernel*' | grep -v "$(uname -r)" | tr \\n ' ')
+dnf remove -y $(rpm -qa 'kernel*' | grep -v "$(uname -r)" | tr \\n ' ')
 
 # remove uneeded firmware.
-yum remove -y linux-firmware
+dnf remove -y linux-firmware
 
 # make sure we cannot directly login as root.
 usermod --lock root
@@ -31,7 +31,7 @@ if [ -n "$(grep VBOX /sys/firmware/acpi/tables/APIC)" ]; then
 # this will be installed at /opt/VBoxGuestAdditions-VERSION.
 # REMOVE_INSTALLATION_DIR=0 is to fix a bug in VBoxLinuxAdditions.run.
 # See http://stackoverflow.com/a/25943638.
-yum install -y kernel-headers kernel-devel gcc bzip2 tar
+dnf install -y kernel-headers kernel-devel gcc bzip2 tar
 rpm -qa 'kernel*' | sort
 mkdir -p /mnt
 mount /dev/sr1 /mnt
@@ -42,7 +42,7 @@ umount /mnt
 eject /dev/sr1
 else
 # install the qemu-kvm Guest Additions.
-yum install -y qemu-guest-agent spice-vdagent
+dnf install -y qemu-guest-agent spice-vdagent
 fi
 
 # disable the DNS reverse lookup on the SSH server. this stops it from
@@ -60,7 +60,7 @@ set completion-ignore-case on
 EOF
 
 # clean packages.
-yum clean all
+dnf clean all
 
 # zero the free disk space -- for better compression of the box file.
 dd if=/dev/zero of=/EMPTY bs=1M || true && sync && rm -f /EMPTY
