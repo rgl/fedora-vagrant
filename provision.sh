@@ -62,6 +62,14 @@ set show-all-if-ambiguous on
 set completion-ignore-case on
 EOF
 
+# reset the machine-id.
+# NB systemd will re-generate it on the next boot.
+# NB machine-id is indirectly used in DHCP as Option 61 (Client Identifier), which
+#    the DHCP server uses to (re-)assign the same or new client IP address.
+# see https://www.freedesktop.org/software/systemd/man/machine-id.html
+# see https://www.freedesktop.org/software/systemd/man/systemd-machine-id-setup.html
+echo '' >/etc/machine-id
+
 # clean packages.
 dnf clean all
 
