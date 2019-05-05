@@ -34,7 +34,7 @@
       "shutdown_command": "echo vagrant | sudo -S poweroff"
     },
     {
-      "name": "fedora-26-amd64-virtualbox",
+      "name": "fedora-{{user `version`}}-amd64-virtualbox",
       "type": "virtualbox-iso",
       "guest_os_type": "Fedora_64",
       "guest_additions_mode": "attach",
