@@ -21,7 +21,7 @@ chmod 440 /etc/sudoers.d/wheel
 # NB vagrant will replace it on the first run.
 install -d -m 700 /home/vagrant/.ssh
 pushd /home/vagrant/.ssh
-curl -s https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -o authorized_keys
+curl -so authorized_keys https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub
 chmod 600 authorized_keys
 chown -R vagrant:vagrant .
 popd
