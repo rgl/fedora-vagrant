@@ -10,11 +10,12 @@ dnf remove -y linux-firmware
 # make sure we cannot directly login as root.
 usermod --lock root
 
-# let our user use root permissions without sudo asking for a password.
-groupadd -r admin
-usermod -a -G admin vagrant
-echo '%admin ALL=(ALL) NOPASSWD:ALL' >/etc/sudoers.d/admin
-chmod 440 /etc/sudoers.d/admin
+# let users in the wheel group use root permissions without sudo asking for a password.
+cat >/etc/sudoers.d/wheel <<'EOF'
+# Allow users in wheel group to run all commands without a password.
+%wheel ALL=(ALL) NOPASSWD:ALL
+EOF
+chmod 440 /etc/sudoers.d/wheel
 
 # install the vagrant public key.
 # NB vagrant will replace it on the first run.
