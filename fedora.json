@@ -1,9 +1,9 @@
 {
   "variables": {
     "disk_size": "61440",
-    "version": "30",
-    "iso_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/30/Server/x86_64/iso/Fedora-Server-netinst-x86_64-30-1.2.iso",
-    "iso_checksum": "5e4eac4566d8c572bfb3bcf54b7d6c82006ec3c6c882a2c9235c6d3494d7b100",
+    "version": "31",
+    "iso_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso",
+    "iso_checksum": "5be8debd3e8fb4e86b9fbf67c7eb66ea598d2b7ad0c7ba8d505ce88067b43444",
     "iso_checksum_type": "sha256",
     "ks": "ks.cfg"
   },
