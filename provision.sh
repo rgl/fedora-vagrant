@@ -26,26 +26,6 @@ chmod 600 authorized_keys
 chown -R vagrant:vagrant .
 popd
 
-# install the Guest Additions.
-if [ -n "$(grep VBOX /sys/firmware/acpi/tables/APIC)" ]; then
-# install the VirtualBox Guest Additions.
-# this will be installed at /opt/VBoxGuestAdditions-VERSION.
-# REMOVE_INSTALLATION_DIR=0 is to fix a bug in VBoxLinuxAdditions.run.
-# See http://stackoverflow.com/a/25943638.
-dnf install -y kernel-headers kernel-devel gcc bzip2 tar
-rpm -qa 'kernel*' | sort
-mkdir -p /mnt
-mount /dev/sr1 /mnt
-while [ ! -f /mnt/VBoxLinuxAdditions.run ]; do sleep 1; done
-REMOVE_INSTALLATION_DIR=0 /mnt/VBoxLinuxAdditions.run --target /tmp/VBoxGuestAdditions
-rm -rf /tmp/VBoxGuestAdditions
-umount /mnt
-eject /dev/sr1
-else
-# install the qemu-kvm Guest Additions.
-dnf install -y qemu-guest-agent spice-vdagent
-fi
-
 # install the nfs client to support nfs synced folders in vagrant.
 dnf -y install nfs-utils
 

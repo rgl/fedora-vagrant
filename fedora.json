@@ -73,6 +73,7 @@
       "execute_command": "echo vagrant | sudo -S bash {{.Path}}",
       "scripts": [
         "upgrade.sh",
+        "provision-guest-additions.sh",
         "provision.sh"
       ]
     }
