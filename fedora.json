@@ -33,6 +33,7 @@
         " inst.cmdline",
         " inst.ksstrict",
         " inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks`}}",
+        " systemd.mask=brltty.service",
         "<enter>"
       ],
       "shutdown_command": "echo vagrant | sudo -S poweroff"
@@ -68,6 +69,7 @@
         " inst.cmdline",
         " inst.ksstrict",
         " inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks`}}",
+        " systemd.mask=brltty.service",
         "<enter>"
       ],
       "shutdown_command": "echo vagrant | sudo -S poweroff"
