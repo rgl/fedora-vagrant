@@ -1,9 +1,9 @@
 {
   "variables": {
     "disk_size": "61440",
-    "version": "36",
-    "iso_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/iso/Fedora-Server-netinst-x86_64-36-1.5.iso",
-    "iso_checksum": "sha256:421c4c6e23d72e4669a55e7710562287ecd9308b3d314329960f586b89ccca19",
+    "version": "37",
+    "iso_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/iso/Fedora-Server-netinst-x86_64-37-1.7.iso",
+    "iso_checksum": "sha256:149d4bae999022b07bd40f8272f6208bc28884dad5110c63e915d37458e6abc0",
     "ks": "ks.cfg"
   },
   "builders": [
@@ -22,19 +22,19 @@
       "disk_interface": "virtio-scsi",
       "disk_discard": "unmap",
       "iso_url": "{{user `iso_url`}}",
-      "iso_checksum": "sha256:421c4c6e23d72e4669a55e7710562287ecd9308b3d314329960f586b89ccca19",
+      "iso_checksum": "sha256:149d4bae999022b07bd40f8272f6208bc28884dad5110c63e915d37458e6abc0",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
       "boot_wait": "5s",
       "boot_command": [
-        "<up><tab>",
+        "<home>e<down><down><end>",
         " ip=dhcp",
         " inst.cmdline",
         " inst.ksstrict",
         " inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks`}}",
         " systemd.mask=brltty.service",
-        "<enter>"
+        "<f10>"
       ],
       "shutdown_command": "echo vagrant | sudo -S poweroff"
     },
@@ -58,19 +58,19 @@
       "hard_drive_interface": "sata",
       "hard_drive_discard": true,
       "iso_url": "{{user `iso_url`}}",
-      "iso_checksum": "sha256:421c4c6e23d72e4669a55e7710562287ecd9308b3d314329960f586b89ccca19",
+      "iso_checksum": "sha256:149d4bae999022b07bd40f8272f6208bc28884dad5110c63e915d37458e6abc0",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
       "boot_wait": "5s",
       "boot_command": [
-        "<up><tab>",
+        "<home>e<down><down><end>",
         " ip=dhcp",
         " inst.cmdline",
         " inst.ksstrict",
         " inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks`}}",
         " systemd.mask=brltty.service",
-        "<enter>"
+        "<f10>"
       ],
       "shutdown_command": "echo vagrant | sudo -S poweroff"
     }

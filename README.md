@@ -1,6 +1,6 @@
 This builds an up-to-date Vagrant Fedora Base Box.
 
-Currently this targets [Fedora](https://fedoraproject.org/) 36.
+Currently this targets [Fedora](https://fedoraproject.org/) 37.
 
 
 # Usage
@@ -59,8 +59,7 @@ its location in the `inst.ks` kernel command line argument.
 
 # Reference
 
-* [Anaconda boot options](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/advanced/Boot_Options/)
+* [Anaconda boot options](https://anaconda-installer.readthedocs.io/en/latest/boot-options.html)
 * [Kickstart manual](http://pykickstart.readthedocs.io/en/latest/kickstart-docs.html)
-* [Kickstart Syntax Reference](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/appendixes/Kickstart_Syntax_Reference/#appe-kickstart-syntax-reference)
-* [Automating the Installation with Kickstart](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/advanced/Kickstart_Installations/)
+* [Kickstart Syntax Reference](https://anaconda-installer.readthedocs.io/en/latest/kickstart.html)
 * [Mirror list](https://admin.fedoraproject.org/mirrormanager/)
