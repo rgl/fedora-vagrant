@@ -1,8 +1,8 @@
 #!/bin/bash
 # this will update the fedora.json file with the current netboot image checksum.
-# see https://getfedora.org/security/
+# see https://fedoraproject.org/security/
 set -euxo pipefail
-wget -qO- https://getfedora.org/static/fedora.gpg | gpg --import
+wget -qO- https://fedoraproject.org/fedora.gpg | gpg --import
 version="$(jq -r '.variables.iso_url' fedora.json | perl -ne '/-(\d+.+)\.iso$/ && print $1')"
 iso_url="$(jq -r '.variables.iso_url' fedora.json)"
 iso_checksum_url="$(dirname $iso_url)/Fedora-Server-$version-x86_64-CHECKSUM"

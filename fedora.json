@@ -1,9 +1,9 @@
 {
   "variables": {
     "disk_size": "61440",
-    "version": "37",
-    "iso_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/37/Server/x86_64/iso/Fedora-Server-netinst-x86_64-37-1.7.iso",
-    "iso_checksum": "sha256:149d4bae999022b07bd40f8272f6208bc28884dad5110c63e915d37458e6abc0",
+    "version": "38",
+    "iso_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/38/Server/x86_64/iso/Fedora-Server-netinst-x86_64-38-1.6.iso",
+    "iso_checksum": "sha256:192af621553aa32154697029e34cbe30152a9e23d72d55f31918b166979bbcf5",
     "ks": "ks.cfg"
   },
   "builders": [
@@ -22,7 +22,7 @@
       "disk_interface": "virtio-scsi",
       "disk_discard": "unmap",
       "iso_url": "{{user `iso_url`}}",
-      "iso_checksum": "sha256:149d4bae999022b07bd40f8272f6208bc28884dad5110c63e915d37458e6abc0",
+      "iso_checksum": "sha256:192af621553aa32154697029e34cbe30152a9e23d72d55f31918b166979bbcf5",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
@@ -58,7 +58,7 @@
       "hard_drive_interface": "sata",
       "hard_drive_discard": true,
       "iso_url": "{{user `iso_url`}}",
-      "iso_checksum": "sha256:149d4bae999022b07bd40f8272f6208bc28884dad5110c63e915d37458e6abc0",
+      "iso_checksum": "sha256:192af621553aa32154697029e34cbe30152a9e23d72d55f31918b166979bbcf5",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
