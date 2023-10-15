@@ -5,7 +5,7 @@ Currently this targets [Fedora](https://fedoraproject.org/) 38.
 
 # Usage
 
-Install [Packer](https://www.packer.io/), [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
+Install [Packer](https://www.packer.io/) and [Vagrant](https://www.vagrantup.com/).
 
 ## qemu-kvm usage
 
@@ -26,22 +26,6 @@ cd example
 apt-get install -y virt-manager libvirt-dev
 vagrant plugin install vagrant-libvirt
 vagrant up --provider=libvirt
-vagrant ssh
-exit
-vagrant destroy -f
-```
-
-## VirtualBox usage
-
-Install [VirtuaBox](https://www.virtualbox.org/).
-
-Type `make build-virtualbox` and follow the instructions.
-
-Try the example guest:
-
-```bash
-cd example
-vagrant up --provider=virtualbox
 vagrant ssh
 exit
 vagrant destroy -f

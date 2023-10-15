@@ -37,42 +37,6 @@
         "<f10>"
       ],
       "shutdown_command": "echo vagrant | sudo -S poweroff"
-    },
-    {
-      "name": "fedora-{{user `version`}}-amd64-virtualbox",
-      "type": "virtualbox-iso",
-      "guest_os_type": "Fedora_64",
-      "guest_additions_mode": "attach",
-      "headless": true,
-      "http_directory": ".",
-      "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "2048"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2"],
-        ["modifyvm", "{{.Name}}", "--vram", "32"],
-        ["modifyvm", "{{.Name}}", "--nictype1", "virtio"],
-        ["modifyvm", "{{.Name}}", "--nictype2", "virtio"],
-        ["modifyvm", "{{.Name}}", "--nictype3", "virtio"],
-        ["modifyvm", "{{.Name}}", "--nictype4", "virtio"]
-      ],
-      "disk_size": "{{user `disk_size`}}",
-      "hard_drive_interface": "sata",
-      "hard_drive_discard": true,
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum": "sha256:192af621553aa32154697029e34cbe30152a9e23d72d55f31918b166979bbcf5",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "60m",
-      "boot_wait": "5s",
-      "boot_command": [
-        "<home>e<down><down><end>",
-        " ip=dhcp",
-        " inst.cmdline",
-        " inst.ksstrict",
-        " inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks`}}",
-        " systemd.mask=brltty.service",
-        "<f10>"
-      ],
-      "shutdown_command": "echo vagrant | sudo -S poweroff"
     }
   ],
   "provisioners": [
