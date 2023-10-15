@@ -1,6 +1,7 @@
 .vagrant/
 packer_cache/
 *.box
+*.box.json
 *.log
 output*
 *.tmp
