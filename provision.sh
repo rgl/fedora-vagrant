@@ -54,8 +54,8 @@ echo '' >/etc/machine-id
 # reset the random-seed.
 # NB systemd-random-seed re-generates it on every boot and shutdown.
 # NB you can prove that random-seed file does not exist on the image with:
-#       sudo virt-filesystems -a ~/.vagrant.d/boxes/fedora-38-amd64/0/libvirt/box.img
-#       sudo guestmount -a ~/.vagrant.d/boxes/fedora-38-amd64/0/libvirt/box.img -m /dev/sda2 --pid-file guestmount.pid --ro /mnt
+#       sudo virt-filesystems -a ~/.vagrant.d/boxes/fedora-39-amd64/0/libvirt/box.img
+#       sudo guestmount -a ~/.vagrant.d/boxes/fedora-39-amd64/0/libvirt/box.img -m /dev/sda2 --pid-file guestmount.pid --ro /mnt
 #       sudo ls -laF /mnt/var/lib/systemd
 #       sudo guestunmount /mnt
 #       sudo bash -c 'while kill -0 $(cat guestmount.pid) 2>/dev/null; do sleep .1; done; rm guestmount.pid' # wait for guestmount to finish.
@@ -79,7 +79,7 @@ if [ "$(lsblk -no DISC-GRAN $(findmnt -no SOURCE /) | awk '{print $1}')" != '0B'
         output="$(fstrim -v /)"
         cat <<<"$output"
         sync && sync && sleep 15
-        bytes_trimmed="$(echo "$output" | perl -n -e '/\((\d+) bytes\)/ && print $1')"
+        bytes_trimmed="$(echo "$output" | awk '{if (match($0, /([0-9]+) bytes/, m)) print m[1]}')"
         # NB if this never reaches zero, it might be because there is not
         #    enough free space for completing the trim.
         if (( bytes_trimmed < $((200*1024*1024)) )); then # < 200 MiB is good enough.

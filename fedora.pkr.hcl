@@ -8,7 +8,7 @@ packer {
     # see https://github.com/hashicorp/packer-plugin-vagrant
     vagrant = {
       source  = "github.com/hashicorp/vagrant"
-      version = "1.1.0"
+      version = "1.1.1"
     }
   }
 }
@@ -28,12 +28,12 @@ variable "disk_size" {
 
 variable "iso_url" {
   type    = string
-  default = "https://download.fedoraproject.org/pub/fedora/linux/releases/38/Server/x86_64/iso/Fedora-Server-netinst-x86_64-38-1.6.iso"
+  default = "https://download.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/iso/Fedora-Server-netinst-x86_64-39-1.5.iso"
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:192af621553aa32154697029e34cbe30152a9e23d72d55f31918b166979bbcf5"
+  default = "sha256:61576ae7170e35210f03aae3102048f0a9e0df7868ac726908669b4ef9cc22e9"
 }
 
 variable "ks" {
