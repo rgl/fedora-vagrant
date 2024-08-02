@@ -3,12 +3,12 @@ packer {
     # see https://github.com/hashicorp/packer-plugin-qemu
     qemu = {
       source  = "github.com/hashicorp/qemu"
-      version = "1.0.10"
+      version = "1.1.0"
     }
     # see https://github.com/hashicorp/packer-plugin-vagrant
     vagrant = {
       source  = "github.com/hashicorp/vagrant"
-      version = "1.1.1"
+      version = "1.1.4"
     }
   }
 }
@@ -28,12 +28,12 @@ variable "disk_size" {
 
 variable "iso_url" {
   type    = string
-  default = "https://download.fedoraproject.org/pub/fedora/linux/releases/39/Server/x86_64/iso/Fedora-Server-netinst-x86_64-39-1.5.iso"
+  default = "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Server/x86_64/iso/Fedora-Server-netinst-x86_64-40-1.14.iso"
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:61576ae7170e35210f03aae3102048f0a9e0df7868ac726908669b4ef9cc22e9"
+  default = "sha256:1b4f163c55aa9b35bb08f3d465534aa68899a4984b8ba8976b1e7b28297b61fe"
 }
 
 variable "ks" {
