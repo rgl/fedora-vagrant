@@ -1,6 +1,6 @@
 This builds an up-to-date Vagrant Fedora Base Box.
 
-Currently this targets [Fedora](https://fedoraproject.org/) 40.
+Currently this targets [Fedora](https://fedoraproject.org/) 41.
 
 
 # Usage
