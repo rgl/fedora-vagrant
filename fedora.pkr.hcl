@@ -3,7 +3,7 @@ packer {
     # see https://github.com/hashicorp/packer-plugin-qemu
     qemu = {
       source  = "github.com/hashicorp/qemu"
-      version = "1.1.1"
+      version = "1.1.3"
     }
     # see https://github.com/hashicorp/packer-plugin-vagrant
     vagrant = {
