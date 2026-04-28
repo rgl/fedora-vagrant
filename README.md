@@ -1,6 +1,6 @@
 This builds an up-to-date Vagrant Fedora Base Box.
 
-Currently this targets [Fedora](https://fedoraproject.org/) 43.
+Currently this targets [Fedora](https://fedoraproject.org/) 44.
 
 
 # Usage
@@ -36,7 +36,7 @@ vagrant destroy -f
 
 The Fedora installation iso uses the Anaconda installer to install Fedora.
 During the installation it will ask you some questions and it will also
-store your anwsers in the `/root/anaconda-ks.cfg` (aka kickstart) file.
+store your answers in the `/root/anaconda-ks.cfg` (aka kickstart) file.
 This file is later used to fully automate a new installation by specifying
 its location in the `inst.ks` kernel command line argument.
 
@@ -47,3 +47,5 @@ its location in the `inst.ks` kernel command line argument.
 * [Kickstart manual](http://pykickstart.readthedocs.io/en/latest/kickstart-docs.html)
 * [Kickstart Syntax Reference](https://anaconda-installer.readthedocs.io/en/latest/kickstart.html)
 * [Mirror list](https://mirrormanager.fedoraproject.org/mirrors/Fedora)
+  * [The fedora repository](https://docs.fedoraproject.org/en-US/quick-docs/fedora-repositories/)
+    * [Near Fedora 44 mirrors](https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-44&arch=x86_64)
