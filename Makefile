@@ -23,4 +23,4 @@ fedora-${VERSION}-amd64-libvirt.box: ks.cfg upgrade.sh provision.sh fedora.pkr.h
 		packer build -only=qemu.fedora-amd64 -on-error=abort -timestamp-ui fedora.pkr.hcl
 	@./box-metadata.sh libvirt fedora-${VERSION}-amd64 $@
 
-.PHONY: buid-libvirt
+.PHONY: build-libvirt
