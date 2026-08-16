@@ -6,9 +6,11 @@ VERSION=44
 help:
 	@echo type one of:
 	@echo 	make build-uefi-libvirt
+	@echo 	make build-uefi-proxmox
 	@echo 	make build-uefi-vsphere
 
 build-uefi-libvirt: fedora-${VERSION}-uefi-amd64-libvirt.box
+build-uefi-proxmox: fedora-${VERSION}-uefi-amd64-proxmox.box
 build-uefi-vsphere: fedora-${VERSION}-uefi-amd64-vsphere.box
 
 fedora-${VERSION}-uefi-amd64-libvirt.box: ks.cfg upgrade.sh provision.sh fedora.pkr.hcl Vagrantfile.template
@@ -25,6 +27,26 @@ fedora-${VERSION}-uefi-amd64-libvirt.box: ks.cfg upgrade.sh provision.sh fedora.
 	PKR_VAR_vagrant_box=$@ \
 		packer build -only=qemu.fedora-uefi-amd64 -on-error=abort -timestamp-ui fedora.pkr.hcl
 	@./box-metadata.sh libvirt fedora-${VERSION}-uefi-amd64 $@
+
+fedora-${VERSION}-uefi-amd64-proxmox.box: tmp/ks-proxmox.cfg upgrade.sh provision.sh fedora.pkr.hcl Vagrantfile.template
+	rm -f $@
+	CHECKPOINT_DISABLE=1 \
+	PACKER_LOG=1 \
+	PACKER_LOG_PATH=$@.init.log \
+		packer init fedora.pkr.hcl
+	PACKER_KEY_INTERVAL=10ms \
+	CHECKPOINT_DISABLE=1 \
+	PACKER_LOG=1 \
+	PACKER_LOG_PATH=$@.log \
+	PKR_VAR_version=${VERSION} \
+	PKR_VAR_ks=tmp/ks-proxmox.cfg \
+	PKR_VAR_vagrant_box=$@ \
+		packer build -only=proxmox-iso.fedora-uefi-amd64 -on-error=abort -timestamp-ui fedora.pkr.hcl
+
+# see https://packages.fedoraproject.org/pkgs/qemu/qemu-guest-agent/
+tmp/ks-proxmox.cfg: ks.cfg
+	mkdir -p tmp
+	sed -E 's,(%packages .+),\1\nqemu-guest-agent,g' ks.cfg >$@
 
 fedora-${VERSION}-uefi-amd64-vsphere.box: tmp/ks-vsphere.cfg provision.sh fedora-vsphere.pkr.hcl Vagrantfile.template
 	rm -f $@
@@ -51,4 +73,5 @@ tmp/ks-vsphere.cfg: ks.cfg
 
 .PHONY: \
 	build-uefi-libvirt \
+	build-uefi-proxmox \
 	build-uefi-vsphere

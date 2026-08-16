@@ -8,6 +8,11 @@ packer {
   }
 }
 
+variable "http_bind_address" {
+  type    = string
+  default = env("PACKER_HTTP_BIND_ADDRESS")
+}
+
 variable "version" {
   type = string
 }
@@ -73,9 +78,10 @@ variable "ks" {
 }
 
 source "vsphere-iso" "fedora-uefi-amd64" {
-  vm_name        = "fedora-${var.version}-uefi-amd64"
-  http_directory = "."
-  guest_os_type  = "fedora64Guest"
+  vm_name           = "fedora-${var.version}-uefi-amd64"
+  http_bind_address = var.http_bind_address
+  http_directory    = "."
+  guest_os_type     = "fedora64Guest"
   storage {
     disk_size             = var.disk_size
     disk_thin_provisioned = true
@@ -105,13 +111,16 @@ source "vsphere-iso" "fedora-uefi-amd64" {
   ssh_password = "vagrant"
   boot_wait    = "15s"
   boot_command = [
-    "<home>e<down><down><end>",
+    "<home>e",                       // edit the install boot entry.
+    "<down><down>",                  // go to the linux line.
+    "<end><bs><bs><bs><bs><bs><bs>", // delete the "quiet" word.
     " ip=dhcp",
+    " net.ifnames=0",
     " inst.cmdline",
     " inst.ksstrict",
     " inst.ks=http://{{.HTTPIP}}:{{.HTTPPort}}/${var.ks}",
     " systemd.mask=brltty.service",
-    "<f10>",
+    "<f10>" // boot.
   ]
   shutdown_command = "echo vagrant | sudo -S poweroff"
 }
