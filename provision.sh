@@ -26,6 +26,9 @@ chmod 600 authorized_keys
 chown -R vagrant:vagrant .
 popd
 
+# install cloud-init.
+dnf -y install cloud-init
+
 # install the nfs client to support nfs synced folders in vagrant.
 dnf -y install nfs-utils
 
