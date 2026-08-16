@@ -72,8 +72,8 @@ variable "ks" {
   default = "ks.cfg"
 }
 
-source "vsphere-iso" "fedora-amd64" {
-  vm_name        = "fedora-${var.version}-amd64"
+source "vsphere-iso" "fedora-uefi-amd64" {
+  vm_name        = "fedora-${var.version}-uefi-amd64"
   http_directory = "."
   guest_os_type  = "fedora64Guest"
   storage {
@@ -95,6 +95,7 @@ source "vsphere-iso" "fedora-amd64" {
     network_card = "vmxnet3"
   }
   convert_to_template = true
+  firmware            = "efi"
   RAM                 = 2 * 1024
   CPUs                = 2
   iso_paths = [
@@ -117,7 +118,7 @@ source "vsphere-iso" "fedora-amd64" {
 
 build {
   sources = [
-    "source.vsphere-iso.fedora-amd64",
+    "source.vsphere-iso.fedora-uefi-amd64",
   ]
 
   provisioner "shell" {

@@ -22,7 +22,7 @@ apt-get install -y sysfsutils
 systool -m kvm_intel -v
 ```
 
-Type `make build-libvirt` and follow the instructions.
+Type `make build-uefi-libvirt` and follow the instructions.
 
 Try the example guest:
 
@@ -59,7 +59,7 @@ export GOVC_DATASTORE='Datastore'
 export VSPHERE_OS_ISO="[$GOVC_DATASTORE] iso/Fedora-Server-netinst-x86_64-44-1.7.iso"
 export VSPHERE_ESXI_HOST='esxi.local'
 export VSPHERE_TEMPLATE_FOLDER='test/templates'
-export VSPHERE_TEMPLATE_NAME="$VSPHERE_TEMPLATE_FOLDER/fedora-44-amd64"
+export VSPHERE_TEMPLATE_NAME="$VSPHERE_TEMPLATE_FOLDER/fedora-44-uefi-amd64"
 export VSPHERE_VM_FOLDER='test'
 export VSPHERE_VM_NAME='fedora-44-vagrant-example'
 export VSPHERE_VLAN='packer'
@@ -89,7 +89,7 @@ Create the base image:
 
 ```bash
 source secrets-vsphere.sh
-make build-vsphere
+make build-uefi-vsphere
 ```
 
 Try the example guest:

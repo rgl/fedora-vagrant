@@ -41,10 +41,14 @@ variable "ks" {
   default = "ks.cfg"
 }
 
-source "qemu" "fedora-amd64" {
-  accelerator = "kvm"
-  cpus        = 2
-  memory      = 2 * 1024
+source "qemu" "fedora-uefi-amd64" {
+  accelerator       = "kvm"
+  machine_type      = "q35"
+  efi_boot          = true
+  efi_firmware_code = "/usr/share/OVMF/OVMF_CODE_4M.fd"
+  efi_firmware_vars = "/usr/share/OVMF/OVMF_VARS_4M.fd"
+  cpus              = 2
+  memory            = 2 * 1024
   qemuargs = [
     ["-cpu", "host"]
   ]
@@ -76,7 +80,7 @@ source "qemu" "fedora-amd64" {
 
 build {
   sources = [
-    "source.qemu.fedora-amd64",
+    "source.qemu.fedora-uefi-amd64",
   ]
 
   provisioner "shell" {
