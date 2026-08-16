@@ -6,3 +6,5 @@ tmp/
 *.log
 output*
 secrets*
+*-sbom*.json
+*-sbom*.html
