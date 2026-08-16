@@ -2,12 +2,12 @@
 set -eux
 
 # install the Guest Additions.
-if [ -n "$(lspci | grep 'Red Hat' | head -1)" ]; then
+if [ "$(systemd-detect-virt)" == "kvm" ]; then
 # install the qemu-kvm Guest Additions.
 # see https://packages.fedoraproject.org/pkgs/qemu/qemu-guest-agent/
 # see https://packages.fedoraproject.org/pkgs/spice-vdagent/spice-vdagent/
 dnf install -y qemu-guest-agent spice-vdagent
-elif [ -n "$(lspci | grep VMware | head -1)" ]; then
+elif [ "$(systemd-detect-virt)" == "vmware" ]; then
 # install the VMware Guest Additions.
 # see https://packages.fedoraproject.org/pkgs/open-vm-tools/open-vm-tools/
 # no need to install the guest additions, as they are already installed from
