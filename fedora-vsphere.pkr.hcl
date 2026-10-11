@@ -73,8 +73,7 @@ variable "vsphere_network" {
 }
 
 variable "ks" {
-  type    = string
-  default = "ks.cfg"
+  type = string
 }
 
 source "vsphere-iso" "fedora-uefi-amd64" {
