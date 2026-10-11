@@ -3,9 +3,11 @@
 # see https://fedoraproject.org/security/
 set -euxo pipefail
 wget -qO- https://fedoraproject.org/fedora.gpg | gpg --import
+# e.g. https://download.fedoraproject.org/pub/fedora/linux/releases/test/45_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-45_Beta-1.3.iso
+# e.g. https://download.fedoraproject.org/pub/fedora/linux/releases/test/45_Beta/Server/x86_64/iso/Fedora-Server-iso-45_Beta-1.3-x86_64-CHECKSUM
 iso_url="$(perl -ne '/default\s*=\s*\"(https:.+\.fedoraproject\.org.+)\"/ && print $1' <fedora.pkr.hcl)"
-version="$(echo "$iso_url" | perl -ne '/-(\d+.+)\.iso$/ && print $1')"
-iso_checksum_url="$(dirname $iso_url)/Fedora-Server-$version-x86_64-CHECKSUM"
+version="$(echo "$iso_url" | perl -ne '/-(\d+_[A-Za-z0]+-\d+(\.\d+)+)\.iso$/ && print $1')"
+iso_checksum_url="$(dirname $iso_url)/Fedora-Server-iso-$version-x86_64-CHECKSUM"
 iso_checksum_file=$(basename $iso_checksum_url)
 curl -O -L --silent --show-error $iso_checksum_url
 gpg --verify $iso_checksum_file

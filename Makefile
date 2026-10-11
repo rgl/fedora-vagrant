@@ -1,12 +1,12 @@
 SHELL=bash
 .SHELLFLAGS=-euo pipefail -c
 
-VERSION=44
+VERSION=45
 
 MIRROR_BASE=https://eu.edge.kernel.org/fedora
-MIRROR_ARCH=${MIRROR_BASE}/releases/44/Server/x86_64
+MIRROR_ARCH=${MIRROR_BASE}/releases/test/45_Beta/Server/x86_64
 MIRROR_URL=${MIRROR_ARCH}/os
-MIRROR_ISO_URL=${MIRROR_ARCH}/iso/Fedora-Server-netinst-x86_64-44-1.7.iso
+MIRROR_ISO_URL=${MIRROR_ARCH}/iso/Fedora-Server-netinst-x86_64-45_Beta-1.3.iso
 
 export PKR_VAR_iso_url=${MIRROR_ISO_URL}
 

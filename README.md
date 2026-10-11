@@ -1,6 +1,6 @@
 This builds an up-to-date Vagrant Fedora Base Box.
 
-Currently this targets [Fedora](https://fedoraproject.org/) 44.
+Currently this targets [Fedora](https://fedoraproject.org/) 45.
 
 
 # Usage
@@ -93,12 +93,12 @@ export GOVC_PASSWORD='password'
 export GOVC_DATACENTER='Datacenter'
 export GOVC_CLUSTER='Cluster'
 export GOVC_DATASTORE='Datastore'
-export VSPHERE_OS_ISO="[$GOVC_DATASTORE] iso/Fedora-Server-netinst-x86_64-44-1.7.iso"
+export VSPHERE_OS_ISO="[$GOVC_DATASTORE] iso/Fedora-Server-netinst-x86_64-45_Beta-1.3.iso"
 export VSPHERE_ESXI_HOST='esxi.local'
 export VSPHERE_TEMPLATE_FOLDER='test/templates'
-export VSPHERE_TEMPLATE_NAME="$VSPHERE_TEMPLATE_FOLDER/fedora-44-uefi-amd64"
+export VSPHERE_TEMPLATE_NAME="$VSPHERE_TEMPLATE_FOLDER/fedora-45-uefi-amd64"
 export VSPHERE_VM_FOLDER='test'
-export VSPHERE_VM_NAME='fedora-44-vagrant-example'
+export VSPHERE_VM_NAME='fedora-45-vagrant-example'
 export VSPHERE_VLAN='packer'
 # set the credentials that the guest will use
 # to connect to this host smb share.
@@ -156,4 +156,4 @@ its location in the `inst.ks` kernel command line argument.
 * [Kickstart Syntax Reference](https://anaconda-installer.readthedocs.io/en/latest/kickstart.html)
 * [Mirror list](https://mirrormanager.fedoraproject.org/mirrors/Fedora)
   * [The fedora repository](https://docs.fedoraproject.org/en-US/quick-docs/fedora-repositories/)
-    * [Near Fedora 44 mirrors](https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-44&arch=x86_64)
+    * [Near Fedora 45 mirrors](https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-45&arch=x86_64)

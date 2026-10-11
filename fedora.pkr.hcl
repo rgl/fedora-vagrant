@@ -43,12 +43,12 @@ variable "disk_size" {
 
 variable "iso_url" {
   type    = string
-  default = "https://download.fedoraproject.org/pub/fedora/linux/releases/44/Server/x86_64/iso/Fedora-Server-netinst-x86_64-44-1.7.iso"
+  default = "https://download.fedoraproject.org/pub/fedora/linux/releases/test/45_Beta/Server/x86_64/iso/Fedora-Server-netinst-x86_64-45_Beta-1.3.iso"
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:ae20c06bea746913cadea7d80463e13f4bf55bee4df2918111c921c674b70283"
+  default = "sha256:426f8f5280053889d1b93ed8159a817ca577ffb6f47a81253f58acd8e49280e9"
 }
 
 variable "ks" {
