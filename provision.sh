@@ -2,7 +2,10 @@
 set -eux
 
 # remove old kernel packages.
-dnf remove -y $(rpm -qa 'kernel*' | grep -v "$(uname -r)" | tr \\n ' ')
+mapfile -t kernels_to_remove < <(rpm -qa 'kernel*' | grep -v "$(uname -r)")
+if [ ${#kernels_to_remove[@]} -gt 0 ]; then
+    dnf remove -y "${kernels_to_remove[@]}"
+fi
 
 # remove unneeded firmware.
 dnf remove -y linux-firmware
